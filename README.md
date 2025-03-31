@@ -6,7 +6,8 @@
 
 The ultimate **gigapipe oss** demo w/ sample _logs, traces, metrics and profiles_ - _batteries included!_
 
-> Compatible with ⭐ LogQL (Loki) ⭐ PromQL (Prometheus) ⭐ Tempo ⭐ Pyroscope
+> Query Compatible with ⭐ LogQL (Loki) ⭐ PromQL (Prometheus) ⭐ Tempo ⭐ Pyroscope <br>
+> Ingestion Compatible with ⭐Opentelemetry ⭐ Elastic ⭐ InfluxDB ⭐ Datadog and more
 
 <br />
 <a href="https://qryn.metrico.in" target="_blank"><img src="https://github.com/metrico/qryn-docs/blob/main/docs/resources/images/qryn_logo_trans.png?raw=true" width=60 /></a>&nbsp;
