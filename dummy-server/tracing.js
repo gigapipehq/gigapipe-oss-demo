@@ -26,9 +26,9 @@ module.exports = (serviceName) => {
   // Export to Jaeger
   //const exporter = new OTLPTraceExporter(options);
 
-  // Export to Zipkin/qryn
+  // Export to Zipkin/gigapipe
   const options = {
-    url: 'http://qryn:3100/tempo/api/push',
+    url: 'http://gigapipe:3100/tempo/api/push',
   }
   const exporter = new ZipkinExporter(options);
 

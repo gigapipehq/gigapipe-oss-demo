@@ -16,7 +16,7 @@ source = '''
 [sinks.cloki_syslog]
 type="loki"
 inputs = ["parse_logs"]
-endpoint = "http://qryn:3100"
+endpoint = "http://gigapipe:3100"
 #tenant_id = "0"
 compression = "none"
 
@@ -39,4 +39,4 @@ endpoint_tag = "endpoint"
 [sinks.prom_write]
 type = "prometheus_remote_write"
 inputs = [ "prom_scrape" ]
-endpoint = "http://qryn:3100/prom/remote/write"
+endpoint = "http://gigapipe:3100/prom/remote/write"
