@@ -41,10 +41,10 @@ receivers:
           scrape_interval: 5s
           static_configs:
             - targets: ['exporter:8080']
-        - job_name: 'qryn'
+        - job_name: 'gigapipe'
           scrape_interval: 5s
           static_configs:
-            - targets: ['qryn:3100']
+            - targets: ['gigapipe:3100']
   influxdb:
     endpoint: 0.0.0.0:8086
   pyroscopereceiver:
@@ -68,8 +68,8 @@ processors:
         action: upsert
 
 exporters:
-  qryn:
-    dsn: tcp://clickhouse-server:9000/qryn?username=qryn&password=demo
+  gigapipe:
+    dsn: tcp://clickhouse-server:9000/gigapipe?username=gigapipe&password=demo
     timeout: 10s
     sending_queue:
       queue_size: 100
@@ -85,7 +85,7 @@ exporters:
     tls:
       insecure: true
   clickhouseprofileexporter:
-    dsn: clickhouse://clickhouse-server:9000/qryn?username=qryn&password=demo
+    dsn: clickhouse://clickhouse-server:9000/gigapipe?username=gigapipe&password=demo
       
 extensions:
   health_check:
@@ -102,15 +102,15 @@ service:
     logs:
       receivers: [fluentforward, otlp, loki]
       processors: [memory_limiter, resourcedetection/system, resource, batch]
-      exporters: [qryn]
+      exporters: [gigapipe]
     traces:
       receivers: [otlp, jaeger, zipkin, skywalking]
       processors: [memory_limiter, resourcedetection/system, resource, batch]
-      exporters: [qryn]
+      exporters: [gigapipe]
     metrics:
       receivers: [prometheus, influxdb]
       processors: [memory_limiter, resourcedetection/system, resource, batch]
-      exporters: [qryn]
+      exporters: [gigapipe]
     logs/profiles:
       receivers: [pyroscopereceiver]
       exporters: [clickhouseprofileexporter]

@@ -16,7 +16,7 @@ datasources:
     type: loki
     access: proxy
     uid: loki
-    url: http://qryn:3100
+    url: http://gigapipe:3100
     editable: true
     jsonData:
       derivedFields:
@@ -32,7 +32,7 @@ datasources:
     type: tempo
     access: proxy
     uid: tempo
-    url: http://qryn:3100
+    url: http://gigapipe:3100
     editable: true
     jsonData:
       nodeGraph:
@@ -54,7 +54,7 @@ datasources:
     type: prometheus
     access: proxy
     uid: prometheus
-    url: http://qryn:3100
+    url: http://gigapipe:3100
     editable: true
     basicAuth: false
     jsonData:
@@ -70,7 +70,7 @@ datasources:
     type: grafana-pyroscope-datasource
     version: 2
     access: proxy
-    url: http://qryn:3100
+    url: http://gigapipe:3100
     basicAuth: false
     basicAuthUser: ""
     withCredentials: false
