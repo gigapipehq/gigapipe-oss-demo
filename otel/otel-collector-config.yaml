@@ -69,7 +69,7 @@ processors:
 
 exporters:
   gigapipe:
-    dsn: tcp://clickhouse-server:9000/gigapipe?username=gigapipe&password=demo
+    dsn: tcp://clickhouse-server:9000/qryn?username=gigapipe&password=demo
     timeout: 10s
     sending_queue:
       queue_size: 100
@@ -85,7 +85,7 @@ exporters:
     tls:
       insecure: true
   clickhouseprofileexporter:
-    dsn: clickhouse://clickhouse-server:9000/gigapipe?username=gigapipe&password=demo
+    dsn: clickhouse://clickhouse-server:9000/qryn?username=gigapipe&password=demo
       
 extensions:
   health_check:
