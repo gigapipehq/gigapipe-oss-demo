@@ -182,10 +182,10 @@ services:
     volumes:
       - ./alloy/config.alloy:/etc/alloy/config.alloy
     environment:
-      - REMOTE_WRITE_HOST="gigapipe:3100"
-      - LOKI_HOST="gigapipe:3100"
-      - TEMPO_HOST="http://gigapipe:3100"
-      - PYROSCOPE_HOST="gigapipe:3100"
+      - REMOTE_WRITE_HOST=gigapipe:3100
+      - LOKI_HOST=gigapipe:3100
+      - TEMPO_HOST=http://gigapipe:3100
+      - PYROSCOPE_HOST=otel-collector:8062
     depends_on:
       - gigapipe
       - otel-collector

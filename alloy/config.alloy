@@ -66,7 +66,8 @@ prometheus.remote_write "prometheus" {
         endpoint {
                 url = format(
                         "http://%s/api/v1/write",
-                        coalesce(env("REMOTE_WRITE_HOST"), "gigapipe:3100")
+                        coalesce(env("REMOTE_WRITE_HOST"), "gigapipe:3100"),
+                )
         }
 }
 
@@ -74,7 +75,8 @@ loki.write "loki" {
         endpoint {
                 url = format(
                         "http://%s/loki/api/v1/push",
-                        coalesce(env("LOKI_HOST"), "gigapipe:3100")
+                        coalesce(env("LOKI_HOST"), "gigapipe:3100"),
+                )
         }
 }
 
@@ -102,7 +104,7 @@ pyroscope.write "pyroscope" {
         endpoint {
                 url = format(
                         "http://%s",
-                        coalesce(env("PYROSCOPE_HOST"), "http://otel-collector:8062")
+                        coalesce(env("PYROSCOPE_HOST"), "http://otel-collector:8062"),
                 )
         }
 }
