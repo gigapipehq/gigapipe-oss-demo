@@ -68,7 +68,7 @@ processors:
         action: upsert
 
 exporters:
-  gigapipe:
+  qryn:
     dsn: tcp://clickhouse-server:9000/qryn?username=gigapipe&password=demo
     timeout: 10s
     sending_queue:
@@ -102,15 +102,15 @@ service:
     logs:
       receivers: [fluentforward, otlp, loki]
       processors: [memory_limiter, resourcedetection/system, resource, batch]
-      exporters: [gigapipe]
+      exporters: [qryn]
     traces:
       receivers: [otlp, jaeger, zipkin, skywalking]
       processors: [memory_limiter, resourcedetection/system, resource, batch]
-      exporters: [gigapipe]
+      exporters: [qryn]
     metrics:
       receivers: [prometheus, influxdb]
       processors: [memory_limiter, resourcedetection/system, resource, batch]
-      exporters: [gigapipe]
+      exporters: [qryn]
     logs/profiles:
       receivers: [pyroscopereceiver]
       exporters: [clickhouseprofileexporter]

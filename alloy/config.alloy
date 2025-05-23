@@ -66,7 +66,7 @@ prometheus.remote_write "prometheus" {
         endpoint {
                 url = format(
                         "http://%s/api/v1/write",
-                        coalesce(env("REMOTE_WRITE_HOST"), "localhost:3100"),
+                        coalesce(env("REMOTE_WRITE_HOST"), "gigapipe:3100"),
                 )
         }
 }
@@ -75,7 +75,7 @@ loki.write "loki" {
         endpoint {
                 url = format(
                         "http://%s/loki/api/v1/push",
-                        coalesce(env("LOKI_HOST"), "localhost:3100"),
+                        coalesce(env("LOKI_HOST"), "gigapipe:3100"),
                 )
         }
 }
@@ -93,7 +93,7 @@ otelcol.processor.attributes "tempolabel" {
 
 otelcol.exporter.otlphttp "tempo" {
         client {
-                endpoint = coalesce(env("TEMPO_HOST"), "http://localhost:3100")
+                endpoint = coalesce(env("TEMPO_HOST"), "http://gigapipe:3100")
                 tls {
                         insecure = true
                 }
@@ -104,7 +104,7 @@ pyroscope.write "pyroscope" {
         endpoint {
                 url = format(
                         "http://%s",
-                        coalesce(env("PYROSCOPE_HOST"), "localhost:8062"),
+                        coalesce(env("PYROSCOPE_HOST"), "http://otel-collector:8062"),
                 )
         }
 }

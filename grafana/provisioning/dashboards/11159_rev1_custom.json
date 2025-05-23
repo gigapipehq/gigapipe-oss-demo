@@ -116,7 +116,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "irate(process_cpu_user_seconds_total{instance=~\"$instance\"}[2m]) * 100",
+          "expr": "irate(process_cpu_seconds_total{instance=~\"$instance\"}[2m]) * 100",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "User CPU - {{instance}}",
@@ -229,14 +229,14 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "nodejs_eventloop_lag_seconds{instance=~\"$instance\"}",
+          "expr": "send_time_ms_count{instance=~\"$instance\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
-      "title": "Event Loop Lag",
+      "title": "Send time - count",
       "type": "timeseries"
     },
     {
@@ -628,10 +628,10 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "nodejs_active_handles_total{instance=~\"$instance\"}",
+          "expr": "promhttp_metric_handler_requests_in_flight{instance=~\"$instance\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Active Handler - {{instance}}",
+          "legendFormat": "Handler Requests IN - {{instance}}",
           "refId": "A"
         },
         {
@@ -639,10 +639,10 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "nodejs_active_requests_total{instance=~\"$instance\"}",
+          "expr": "promhttp_metric_handler_requests_total{instance=~\"$instance\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Active Request - {{instance}}",
+          "legendFormat": "Handler Requests Total - {{instance}}",
           "refId": "B"
         }
       ],
