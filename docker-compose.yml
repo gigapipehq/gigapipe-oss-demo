@@ -1,5 +1,6 @@
 volumes:
     grafana_data: {}
+    perses_data: {}
     clickhouse_data: {}
 
 networks:
@@ -7,8 +8,27 @@ networks:
     driver: bridge
 
 services:
+  perses:
+    image: "docker.io/persesdev/perses:latest"
+    networks:
+      - gigapipe-oss
+    ports:
+      - "5000:8080"
+    command: "--config=/etc/perses/config/config.yaml"
+    volumes:
+      - perses_data:/perses
+      - ./perses/perses.yaml:/etc/perses/config/config.yaml
+      - ./perses/provisioning:/etc/perses/provisioning
+      - ./perses/secret:/etc/perses/config
+    restart: unless-stopped
+    logging:
+      driver: "local"
+      options:
+        max-size: "1m"
+        max-file: "5"
+
   grafana:
-    image: grafana/grafana-oss:11.5.0
+    image: grafana/grafana-oss:12.0.1
     container_name: grafana
     networks:
       - gigapipe-oss
@@ -24,7 +44,7 @@ services:
       - GF_ALERTING_ENABLED=false
       - GF_UNIFIED_ALERTING_ENABLED=true
       - GF_FEATURE_TOGGLES_ENABLE=traceToMetrics,publicDashboards,tempoApmTable
-      - GF_INSTALL_PLUGINS=grafana-pyroscope-app,https://storage.googleapis.com/integration-artifacts/grafana-lokiexplore-app/grafana-lokiexplore-app-latest.zip;grafana-lokiexplore-app
+#      - GF_INSTALL_PLUGINS=grafana-pyroscope-app,https://storage.googleapis.com/integration-artifacts/grafana-lokiexplore-app/grafana-lokiexplore-app-latest.zip;grafana-lokiexplore-app
     restart: unless-stopped
     ports:
       - 3000:3000
