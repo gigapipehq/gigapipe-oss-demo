@@ -103,6 +103,7 @@ services:
       - PORT=3100
       - NODE_OPTIONS="--max-old-space-size=4096"
       - FASTIFY_METRICS=true
+      - LOG_DRILLDOWN=true
     depends_on:
       clickhouse-server:
         condition: service_healthy
