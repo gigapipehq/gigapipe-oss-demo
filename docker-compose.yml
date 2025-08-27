@@ -100,6 +100,8 @@ services:
       - gigapipe-oss
     volumes:
       - ./vector/vector.toml:/etc/vector/vector.toml:ro
+    environment:
+      - VECTOR_CONFIG=/etc/vector/vector.toml
     depends_on:
       - gigapipe
     logging:
